@@ -101,7 +101,8 @@
 
 - (void)testCanPerformEditingActionWithVideoMessage
 {
-    TSAttachmentStream *videoAttachment = [[TSAttachmentStream alloc] initWithContentType:@"video/mp4" filename:nil];
+    TSAttachmentStream *videoAttachment =
+        [[TSAttachmentStream alloc] initWithContentType:@"video/mp4" sourceFilename:nil];
     self.messageAdapter.mediaItem = [[TSVideoAttachmentAdapter alloc] initWithAttachment:videoAttachment incoming:NO];
 
     XCTAssertTrue([self.messageAdapter canPerformEditingAction:@selector(delete:)]);
@@ -114,7 +115,8 @@
 
 - (void)testCanPerformEditingActionWithAudioMessage
 {
-    TSAttachmentStream *audioAttachment = [[TSAttachmentStream alloc] initWithContentType:@"audio/mp3" filename:nil];
+    TSAttachmentStream *audioAttachment =
+        [[TSAttachmentStream alloc] initWithContentType:@"audio/mp3" sourceFilename:nil];
     self.messageAdapter.mediaItem = [[TSVideoAttachmentAdapter alloc] initWithAttachment:audioAttachment incoming:NO];
 
     XCTAssertTrue([self.messageAdapter canPerformEditingAction:@selector(delete:)]);
@@ -161,7 +163,8 @@
     XCTAssertNotNil([TSMessage fetchObjectWithUniqueID:self.message.uniqueId]);
 
     NSError *error;
-    TSAttachmentStream *videoAttachment = [[TSAttachmentStream alloc] initWithContentType:@"video/mp4" filename:nil];
+    TSAttachmentStream *videoAttachment =
+        [[TSAttachmentStream alloc] initWithContentType:@"video/mp4" sourceFilename:nil];
     [videoAttachment writeData:[NSData new] error:&error];
     [videoAttachment save];
 
@@ -183,7 +186,8 @@
     XCTAssertNotNil([TSMessage fetchObjectWithUniqueID:self.message.uniqueId]);
 
     NSError *error;
-    TSAttachmentStream *audioAttachment = [[TSAttachmentStream alloc] initWithContentType:@"audio/mp3" filename:nil];
+    TSAttachmentStream *audioAttachment =
+        [[TSAttachmentStream alloc] initWithContentType:@"audio/mp3" sourceFilename:nil];
     [audioAttachment writeData:[NSData new] error:&error];
     [audioAttachment save];
 
@@ -217,7 +221,7 @@
     XCTAssertNil(UIPasteboard.generalPasteboard.image);
 
     NSError *error;
-    TSAttachmentStream *attachment = [[TSAttachmentStream alloc] initWithContentType:@"image/jpeg" filename:nil];
+    TSAttachmentStream *attachment = [[TSAttachmentStream alloc] initWithContentType:@"image/jpeg" sourceFilename:nil];
     [attachment writeData:self.fakeAudioData error:&error];
     [attachment save];
 
@@ -245,7 +249,8 @@
     UIPasteboard.generalPasteboard.items = @[];
 
     NSError *error;
-    TSAttachmentStream *videoAttachment = [[TSAttachmentStream alloc] initWithContentType:@"video/mp4" filename:nil];
+    TSAttachmentStream *videoAttachment =
+        [[TSAttachmentStream alloc] initWithContentType:@"video/mp4" sourceFilename:nil];
     [videoAttachment writeData:self.fakeVideoData error:&error];
     self.messageAdapter.mediaItem = [[TSVideoAttachmentAdapter alloc] initWithAttachment:videoAttachment incoming:YES];
 
@@ -261,7 +266,8 @@
     XCTAssertNil([UIPasteboard.generalPasteboard dataForPasteboardType:(NSString *)kUTTypeMP3]);
 
     NSError *error;
-    TSAttachmentStream *audioAttachment = [[TSAttachmentStream alloc] initWithContentType:@"audio/mp3" filename:nil];
+    TSAttachmentStream *audioAttachment =
+        [[TSAttachmentStream alloc] initWithContentType:@"audio/mp3" sourceFilename:nil];
     [audioAttachment writeData:self.fakeAudioData error:&error];
     self.messageAdapter.mediaItem = [[TSVideoAttachmentAdapter alloc] initWithAttachment:audioAttachment incoming:NO];
 
@@ -275,7 +281,8 @@
     XCTAssertNil([UIPasteboard.generalPasteboard dataForPasteboardType:(NSString *)kUTTypeMPEG4Audio]);
 
     NSError *error;
-    TSAttachmentStream *audioAttachment = [[TSAttachmentStream alloc] initWithContentType:@"audio/x-m4a" filename:nil];
+    TSAttachmentStream *audioAttachment =
+        [[TSAttachmentStream alloc] initWithContentType:@"audio/x-m4a" sourceFilename:nil];
     [audioAttachment writeData:self.fakeAudioData error:&error];
     self.messageAdapter.mediaItem = [[TSVideoAttachmentAdapter alloc] initWithAttachment:audioAttachment incoming:NO];
 
@@ -289,7 +296,8 @@
     XCTAssertNil([UIPasteboard.generalPasteboard dataForPasteboardType:(NSString *)kUTTypeAudio]);
 
     NSError *error;
-    TSAttachmentStream *audioAttachment = [[TSAttachmentStream alloc] initWithContentType:@"audio/wav" filename:nil];
+    TSAttachmentStream *audioAttachment =
+        [[TSAttachmentStream alloc] initWithContentType:@"audio/wav" sourceFilename:nil];
     [audioAttachment writeData:self.fakeAudioData error:&error];
     self.messageAdapter.mediaItem = [[TSVideoAttachmentAdapter alloc] initWithAttachment:audioAttachment incoming:NO];
 
