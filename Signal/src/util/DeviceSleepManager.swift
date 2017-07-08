@@ -56,7 +56,7 @@ import Foundation
 
     public func removeBlock(blockObject: NSObject) {
         blocks = blocks.filter {
-         $0.blockObject != nil && $0.blockObject != blockObject
+            $0.blockObject != nil && $0.blockObject != blockObject
         }
 
         ensureSleepBlocking()
@@ -71,7 +71,7 @@ import Foundation
 
         if UIApplication.shared.isIdleTimerDisabled != shouldBlock {
             if shouldBlock {
-                Logger.info("\(self.TAG) \(#function): Blocking sleep")
+                Logger.info("\(self.TAG) \(#function): Blocking sleep because of: \(String(describing: blocks.first?.blockObject))")
             } else {
                 Logger.info("\(self.TAG) \(#function): Unblocking sleep")
             }

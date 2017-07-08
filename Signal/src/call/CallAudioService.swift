@@ -321,8 +321,7 @@ import AVFoundation
                 let oldMode = session.mode
                 let oldOptions = session.categoryOptions
 
-                if oldCategory == category, oldMode == mode, oldOptions == options {
-                    Logger.debug("\(self.TAG) in \(#function) doing nothing, since audio session is unchanged.")
+                guard oldCategory != category || oldMode != mode || oldOptions != options else {
                     return
                 }
 
@@ -333,10 +332,8 @@ import AVFoundation
                     Logger.debug("\(self.TAG) audio session changed mode: \(oldMode) -> \(mode) ")
                 }
                 if oldOptions != options {
-                    Logger.debug("\(self.TAG) audio session changed category: \(oldOptions) -> \(options) ")
+                    Logger.debug("\(self.TAG) audio session changed options: \(oldOptions) -> \(options) ")
                 }
-
-                Logger.debug("\(self.TAG) setting new category: \(category) mode: \(mode) options: \(options)")
                 try session.setCategory(category, mode: mode, options: options)
 
             } else {
@@ -351,10 +348,8 @@ import AVFoundation
                     Logger.debug("\(self.TAG) audio session changed category: \(oldCategory) -> \(category) ")
                 }
                 if oldOptions != options {
-                    Logger.debug("\(self.TAG) audio session changed category: \(oldOptions) -> \(options) ")
+                    Logger.debug("\(self.TAG) audio session changed options: \(oldOptions) -> \(options) ")
                 }
-
-                Logger.debug("\(self.TAG) setting new category: \(category) options: \(options)")
                 try session.setCategory(category, with: options)
 
             }
